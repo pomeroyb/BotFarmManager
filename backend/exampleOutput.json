@@ -1,0 +1,24 @@
+{
+    "bots" : {
+        "exampleSerial" :{
+            "online" : false,
+            "problems" : {
+                "tornInsulation" : false,
+                "xEndstopFailure" : false,
+                "xStepperFailure" : false,
+                "extruderFanFailure" : false,
+                "hotEndFailure" : true
+            }
+        },
+        "04212AA34" :{
+            "online" : true,
+            "problems" : {
+                "tornInsulation" : true,
+                "xEndstopFailure" : false,
+                "xStepperFailure" : false,
+                "extruderFanFailure" : false,
+                "hotEndFailure" : false
+            }
+        }
+    }
+}
