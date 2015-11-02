@@ -1,7 +1,7 @@
 {
     "bots" : {
         "exampleSerial" :{
-            "online" : false,
+            "status" : "offline",
             "problems" : {
                 "tornInsulation" : false,
                 "xEndstopFailure" : false,
@@ -11,7 +11,17 @@
             }
         },
         "04212AA34" :{
-            "online" : true,
+            "status" : "online",
+            "problems" : {
+                "tornInsulation" : false,
+                "xEndstopFailure" : false,
+                "xStepperFailure" : false,
+                "extruderFanFailure" : false,
+                "hotEndFailure" : false
+            }
+        }
+        "023599B47" :{
+            "status" : "faulty",
             "problems" : {
                 "tornInsulation" : true,
                 "xEndstopFailure" : false,
