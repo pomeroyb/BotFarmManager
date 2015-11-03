@@ -34,10 +34,10 @@ class BarcodeReader(object):
          39: ')', 44: ' ', 45: '_', 46: '+', 47: '{', 48: '}', 49: '|',
          51: ':' , 52: '"', 53: '~', 54: '<', 55: '>', 56: '?'  }
 
-    def clear():
+    def clear(self):
         self.output = ""
     
-    def getInput():
+    def getInput(self):
        ## Get the character from the HID
        buffer = self.fp.read(8)
        for c in buffer:
