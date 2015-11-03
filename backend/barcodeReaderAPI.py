@@ -36,6 +36,7 @@ class BarcodeReader(object):
 
     def clear(self):
         self.output = ""
+        self.done = False
     
     def getInput(self):
        ## Get the character from the HID
