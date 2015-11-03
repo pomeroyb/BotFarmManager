@@ -17,7 +17,7 @@ while not done:
 print ss
 
 
-def getInput()
+def getInput():
    ## Get the character from the HID
    buffer = fp.read(8)
    for c in buffer:
