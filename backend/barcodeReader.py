@@ -13,7 +13,7 @@ shift = False
 done = False
 
 while not done:
-    getInput();
+    getInput()
 print ss
 
 
