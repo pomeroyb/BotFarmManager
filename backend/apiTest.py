@@ -1,7 +1,7 @@
 import barcodeReaderAPI
 
 ended = False
-reader = barcodeReaderAPI.BarcodeReader
+reader = barcodeReaderAPI.BarcodeReader()
 count = 0
 
 while not ended:
