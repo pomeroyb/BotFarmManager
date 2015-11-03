@@ -11,5 +11,5 @@ while not ended:
     if (reader.done):
         print reader.output
         reader.clear()
-        count++
+        count += 1
     
