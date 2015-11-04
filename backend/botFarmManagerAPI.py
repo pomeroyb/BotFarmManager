@@ -2,6 +2,17 @@ import sys
 import json
 
 
+class BotFarmManager(object):
+    """ Overarching class for interacting with the API
+    
+    """
+    
+    def __init__(self):
+        self.config = Config()
+        self.reader = BarCodeReader()
+        
+    
+
 class Config(object):
     """ This class loads and saves json configs that represent
         the printer farm status
