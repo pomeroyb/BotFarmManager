@@ -2,6 +2,55 @@ import sys
 import json
 
 
+class Config(object):
+    """ This class loads and saves json configs that represent
+        the printer farm status
+    
+    """
+    
+    def __init__(self):
+        self.fname = 'config.json'
+        self.emptyConfig = {'farm': {}}
+        self.data = None
+        
+    def load(self):
+        """ Loads a json config representing the status of our
+            3D printer farm
+            
+        """
+        if os.path.isFile(self.fname):
+            # File exists, load it
+            print 'found config'
+            with open(self.fname) as json_data_file:
+                try:
+                    self.data = json.load(json_data_file)
+                    print 'Loaded config'
+                except ValueError, e:
+                    print 'Not a valid JSON config file!'
+        else:
+            print 'No config.json found. Creating empty config'
+            with open(self.fname, 'w') as outfile:
+                try:
+                    json.dump(self.emptyConfig, outfile)
+                    self.data = self.emptyConfig
+                    print 'Created config'
+                except ValueError, e:
+                    print 'Could not create config'
+    
+    def save(self):
+        """Saves a BotFarmManager Config.  If no config.json exists, it will create one.
+        This method completely overwrites the old config.json, so make sure to run config.load()
+        before this if you want your old data saved.
+        
+        """
+        with open(self.fname, 'w') as outfile:
+            try:
+                json.dump(self.data, outfile)
+                print 'Saved config'
+            except ValueError, e:
+                print 'Could not save config'
+        
+
 class BarcodeReader(object):
     """This class grabs data from the HIDRAW0 and converts
         it to easy to use text.    
