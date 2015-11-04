@@ -2,16 +2,7 @@ import sys
 import json
 
 
-class BotFarmManager(object):
-    """ Overarching class for interacting with the API
-    
-    """
-    
-    def __init__(self):
-        self.config = Config()
-        self.reader = BarCodeReader()
-        
-    
+
 
 class Config(object):
     """ This class loads and saves json configs that represent
@@ -136,3 +127,13 @@ class BarcodeReader(object):
                 else:
                    self.output += self.hid[ int(ord(c)) ]    
      
+class BotFarmManager(object):
+    """ Overarching class for interacting with the API
+    
+    """
+    
+    def __init__(self):
+        self.config = Config()
+        self.reader = BarCodeReader()
+        
+    
