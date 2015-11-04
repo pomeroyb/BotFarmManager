@@ -15,7 +15,7 @@ Since the Pi runs headless, all interaction with the manager is done using the b
 |   BotSerial     | Unique 3D printer identifier. Affixed to the Bot  |
 |  Commands       | Barcodes that let you modify the printers in your farm|
 |  Status         | Boolean values that define diagnosed problems |
-|  Events         | Values the keep tallies of the number of times certain symptoms are seen|
+|  Events         | Values that keep tallies of the number of times certain symptoms are seen|
 
 All codes will be encoded using the [Code 128](https://en.wikipedia.org/wiki/Code_128) standard.
 
