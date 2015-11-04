@@ -1,7 +1,7 @@
-import barcodeReaderAPI
+import botFarmManagerAPI
 
 # Create a BarcodeReader object
-reader = barcodeReaderAPI.BarcodeReader()
+reader = botFarmManagerAPI.BarcodeReader()
 
 # Some vars to decide when to end our program
 ended = False
