@@ -13,6 +13,70 @@ class BotFarmManager(object):
         self.config.load()
         self.reader = BarcodeReader()
         
+    ## TODO:
+    #   UpdateBot
+    #   ClearBotEvents
+    #   SetBotType
+    #   SetBotName
+    #   ClearBotProblems
+    
+    def UpdateBot(self, serial, input)
+        """ Updates a bot if it exists
+        
+            Returns: True if the bot was updated, false if not
+        """
+    
+    #find out what kind of update we were sent
+    checkStr = input[0:3]
+    cleanInput = input[3:]
+    print cleanInput
+    
+    if checkStr = 'cmd':
+        # Command updates don't necessarily need an existing bot
+        # so we don't check that a serial exists
+        if cleanInput = 'addbot':
+            return self.AddBot(serial)
+        elif cleanInput = 'removebot':
+            return self.RemoveBot(serial)
+    
+    elif serial in self.config.data['farm']:
+        if checkStr == 'prb':
+            #This is a problem update
+            if cleanInput in self.config.data['farm'][serial]['problems']:
+                # Problem updates always set problems to True.
+                self.config.data['farm'][serial]['problems'][cleanInput] = True
+                return True
+        elif checkStr == 'evt':
+            # This is an event update
+            if cleanInput in self.config.data['farm'][serial]['events']:
+                # Event updates always add one to the event
+                self.config.data['farm'][serial]['events'][cleanInput] = self.config.data['farm'][serial]['events'][cleanInput] + 1
+                return True
+        elif checkStr == 'nme':
+            # This is a bot name update. We don't do any input checking yolo
+            self.config.data['farm'][serial]['name'] = cleanInput
+            return True
+        elif checkStr == 'typ':
+            # This is a bot type update. We don't do any input checking here either yolox2
+            self.config.data['farm'][serial]['type'] = cleanInput
+            return True
+        elif checkStr == 'clr':
+            # This is a clear update. We're either clearing status or events
+            if cleanInput == 'botproblems':
+                # Set all bot problems to false
+                for key in self.config.data['farm'][serial][problems]:
+                    self.config.data['farm'][serial][problems][key] = False
+                return True
+            if cleanInput == 'botevents':
+                # Set all bot events to 0
+                for key in self.config.data['farm'][serial][events]:
+                    for key in self.config.data['farm'][serial][events][key] = 0
+                return True
+    else:
+        print input + " was not recognized!"
+        return False
+
+                    
     def RemoveBot(self, serial):
         """Removes a serial from the config data if it exists.
         
@@ -21,7 +85,6 @@ class BotFarmManager(object):
         
         #check to make sure the first three chars of the serial code is 'bot'
         checkStr = serial[0:3]
-        print checkStr
         if checkStr == 'bot':
             print 'valid serial'
             if serial in self.config.data['farm']:
@@ -35,7 +98,9 @@ class BotFarmManager(object):
         """
         
         #The infoDict contains the overall status of a bot
-        infoDict = {"status": "online",
+        infoDict = {"status" : "online",
+                    "type" : "Replicator 2",
+                    "name" : "Default",
                     "problems" : {                
                         "tornInsulation" : False,
                         "xEndstopFailure" : False,
@@ -53,7 +118,6 @@ class BotFarmManager(object):
         
         #check to make sure the first three chars of the serial code is 'bot'
         checkStr = serial[0:3]
-        print checkStr
         if checkStr == 'bot':
             print 'valid serial'
             if serial not in self.config.data['farm']:
