@@ -19,6 +19,7 @@ while not ended:
     if (manager.reader.done):
         # Display the reader's output
         print manager.reader.output
+        manager.AddBot(manager.reader.output)
         # Make sure you clear the reader immediately after grabbing data from it.
         manager.reader.clear()
         count += 1

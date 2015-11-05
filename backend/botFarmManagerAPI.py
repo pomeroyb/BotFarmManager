@@ -71,7 +71,7 @@ class Config(object):
             3D printer farm
             
         """
-        if os.path.isFile(self.fname):
+        if os.path.isfile(self.fname):
             # File exists, load it
             print 'found config'
             with open(self.fname) as json_data_file:
