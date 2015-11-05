@@ -24,3 +24,4 @@ while not ended:
         manager.reader.clear()
         count += 1
     
+manager.config.save()
