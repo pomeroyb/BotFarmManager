@@ -85,6 +85,11 @@ class BotFarmManager(object):
             print 'valid serial'
             if serial in self.config.data['farm']:
                 del self.config.data['farm'][serial]
+                return True
+            else:
+                return False
+        else:
+            return False
         
     def AddBot(self, serial):
         """ Adds a serial to the config data. If the serial already exists,
