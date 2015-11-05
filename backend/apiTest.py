@@ -3,6 +3,7 @@ import botFarmManagerAPI
 # Create a Bot Farm Manager object
 manager = botFarmManagerAPI.BotFarmManager()
 # This manager holds the config file IO and barcode reader
+# Our config was automatically loaded.
 
 # Some vars to decide when to end our program
 ended = False

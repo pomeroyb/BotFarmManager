@@ -28,7 +28,7 @@ class BotFarmManager(object):
                         "extruderFanFailure" : False,
                         "hotEndFailure" : False,
                         "wornYCarriage" : False
-                        }
+                        },
                     "events" : {
                         "underExtrusion" : 0,
                         "layerShift" : 0,
@@ -48,6 +48,7 @@ class BotFarmManager(object):
                 print serial + ' is already present!'
                 return False
         else:
+            #Not a valid serial. You scanned the wrong thing!
             print serial + ' is not a valid machine serial!'
             return False
         
