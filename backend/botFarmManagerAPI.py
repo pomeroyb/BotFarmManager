@@ -66,14 +66,14 @@ class BotFarmManager(object):
                 # This is a clear update. We're either clearing status or events
                 if cleanInput == 'botproblems':
                     # Set all bot problems to false
-                    for key in self.config.data['farm'][serial][problems]:
-                        self.config.data['farm'][serial][problems][key] = False
+                    for key in self.config.data['farm'][serial]['problems']:
+                        self.config.data['farm'][serial]['problems'][key] = False
                     print "Machine " + serial + " doesn't have any problems!"
                     return True
                 if cleanInput == 'botevents':
                     # Set all bot events to 0
-                    for key in self.config.data['farm'][serial][events]:
-                        self.config.data['farm'][serial][events][key] = 0
+                    for key in self.config.data['farm'][serial]['events']:
+                        self.config.data['farm'][serial]['events'][key] = 0
                     print "Machine " + serial + " doesn't have any events!"
                     return True
         else:
