@@ -64,7 +64,7 @@ class BotFarmManager(object):
             if cleanInput == 'botevents':
                 # Set all bot events to 0
                 for key in self.config.data['farm'][serial][events]:
-                    for key in self.config.data['farm'][serial][events][key] = 0
+                    self.config.data['farm'][serial][events][key] = 0
                 return True
     else:
         print input + " was not recognized!"
