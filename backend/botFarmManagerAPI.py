@@ -32,7 +32,7 @@ class BotFarmManager(object):
             ret = self.AddBot(serial)
             return ret
         elif cleanInput == 'removebot':
-            ret self.RemoveBot(serial)
+            ret = self.RemoveBot(serial)
             return ret
     
     elif serial in self.config.data['farm']:
