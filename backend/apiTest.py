@@ -25,6 +25,7 @@ while not ended:
         print manager.reader.output
         output = manager.reader.output
         code = output[0:3]
+        print code
         if code == 'bot':
             # Just remember the serial
             oldOutput = output

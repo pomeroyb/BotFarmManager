@@ -30,9 +30,11 @@ class BotFarmManager(object):
             # so we don't check that a serial exists
             if cleanInput == 'addbot':
                 ret = self.AddBot(serial)
+                print "Added machine " + serial + " to farm"
                 return ret
             elif cleanInput == 'removebot':
                 ret = self.RemoveBot(serial)
+                print "Removed machine " + serial + " to farm"
                 return ret
        
         elif serial in self.config.data['farm']:
@@ -41,20 +43,24 @@ class BotFarmManager(object):
                 if cleanInput in self.config.data['farm'][serial]['problems']:
                     # Problem updates always set problems to True.
                     self.config.data['farm'][serial]['problems'][cleanInput] = True
+                    print "Machine " + serial + " now has " + cleanInput
                     return True
             elif checkStr == 'evt':
                 # This is an event update
                 if cleanInput in self.config.data['farm'][serial]['events']:
                     # Event updates always add one to the event
                     self.config.data['farm'][serial]['events'][cleanInput] = self.config.data['farm'][serial]['events'][cleanInput] + 1
+                    print "Machine " + serial + " has had a(n) " + cleanInput
                     return True
             elif checkStr == 'nme':
                 # This is a bot name update. We don't do any input checking yolo
                 self.config.data['farm'][serial]['name'] = cleanInput
+                print "Machine " + serial + " is now named " + cleanInput
                 return True
             elif checkStr == 'typ':
                 # This is a bot type update. We don't do any input checking here either yolox2
                 self.config.data['farm'][serial]['type'] = cleanInput
+                print "Machine " + serial + " is now a " + cleanInput
                 return True
             elif checkStr == 'clr':
                 # This is a clear update. We're either clearing status or events
@@ -62,11 +68,13 @@ class BotFarmManager(object):
                     # Set all bot problems to false
                     for key in self.config.data['farm'][serial][problems]:
                         self.config.data['farm'][serial][problems][key] = False
+                    print "Machine " + serial + " doesn't have any problems!"
                     return True
                 if cleanInput == 'botevents':
                     # Set all bot events to 0
                     for key in self.config.data['farm'][serial][events]:
                         self.config.data['farm'][serial][events][key] = 0
+                    print "Machine " + serial + " doesn't have any events!"
                     return True
         else:
             print input + " was not recognized!"
