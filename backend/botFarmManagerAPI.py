@@ -13,12 +13,6 @@ class BotFarmManager(object):
         self.config.load()
         self.reader = BarcodeReader()
         
-    ## TODO:
-    #   UpdateBot
-    #   ClearBotEvents
-    #   SetBotType
-    #   SetBotName
-    #   ClearBotProblems
     
     def UpdateBot(self, serial, input)
         """ Updates a bot if it exists

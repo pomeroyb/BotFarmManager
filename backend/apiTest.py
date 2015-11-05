@@ -32,13 +32,14 @@ while not ended:
             if oldOutput is not None:
                 # If our output is one of these commmands, update the bot
                 manager.UpdateBot(oldOutput, output)
+                oldOutput = None
         
 
         # Make sure you clear the reader immediately after grabbing data from it.
         manager.reader.clear()
         count += 1
     if (count > 5):
-    ended = True
+        ended = True
     
 
 
