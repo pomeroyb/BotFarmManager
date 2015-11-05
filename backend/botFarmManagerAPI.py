@@ -14,7 +14,7 @@ class BotFarmManager(object):
         self.reader = BarcodeReader()
         
     
-    def UpdateBot(self, serial, input)
+    def UpdateBot(self, serial, input):
         """ Updates a bot if it exists
         
             Returns: True if the bot was updated, false if not
