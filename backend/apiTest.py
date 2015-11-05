@@ -8,7 +8,7 @@ manager = botFarmManagerAPI.BotFarmManager()
 # Some vars to decide when to end our program
 ended = False
 count = 0
-
+delBot = ''
 while not ended:
     if (count > 5):
         ended = True
@@ -19,9 +19,16 @@ while not ended:
     if (manager.reader.done):
         # Display the reader's output
         print manager.reader.output
+        delBot = manager.reader.output
         manager.AddBot(manager.reader.output)
         # Make sure you clear the reader immediately after grabbing data from it.
         manager.reader.clear()
         count += 1
     
+print manager.config.data
+print '============DELETING BOTs================='
+manager.RemoveBot(delBot)
+print manager.config.data
+
+
 manager.config.save()

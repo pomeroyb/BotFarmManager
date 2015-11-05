@@ -13,6 +13,20 @@ class BotFarmManager(object):
         self.config.load()
         self.reader = BarcodeReader()
         
+    def RemoveBot(self, serial):
+        """Removes a serial from the config data if it exists.
+        
+            Returns: true if the bot was removed, false if not
+        """
+        
+        #check to make sure the first three chars of the serial code is 'bot'
+        checkStr = serial[0:3]
+        print checkStr
+        if checkStr == 'bot':
+            print 'valid serial'
+            if serial in self.config.data['farm']:
+                del self.config.data['farm'][serial]
+        
     def AddBot(self, serial):
         """ Adds a serial to the config data. If the serial already exists,
             nothing happens
