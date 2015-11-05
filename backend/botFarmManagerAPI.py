@@ -38,7 +38,7 @@ class BotFarmManager(object):
                     }
         
         #check to make sure the first three chars of the serial code is 'bot'
-        checkStr = serial[0:2]
+        checkStr = serial[0:3]
         print checkStr
         if checkStr == 'bot':
             print 'valid serial'
