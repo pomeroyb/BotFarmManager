@@ -9,7 +9,47 @@ class BotFarmManager(object):
     
     def __init__(self):
         self.config = Config()
+        self.config.load()
         self.reader = BarcodeReader()
+        
+    def AddBot(self, serial):
+        """ Adds a serial to the config data. If the serial already exists,
+            nothing happens
+        
+            Returns: true if the bot was added, false if not.
+        """
+        
+        #The infoDict contains the overall status of a bot
+        infoDict = {"status": "online",
+                    "problems" : {                
+                        "tornInsulation" : False,
+                        "xEndstopFailure" : False,
+                        "xStepperFailure" : False,
+                        "extruderFanFailure" : False,
+                        "hotEndFailure" : False,
+                        "wornYCarriage" : False
+                        }
+                    "events" : {
+                        "underExtrusion" : 0,
+                        "layerShift" : 0,
+                        "highResUnderExtrusion" : 0,
+                        "ovalHoles": 0}
+                    }
+        
+        #check to make sure the first three chars of the serial code is 'bot'
+        checkStr = serial[0:2]
+        if checkStr == 'bot':
+            print 'valid serial'
+            if serial not in self.config.data['farm']:
+                self.config.data['farm'][serial] = infoDict
+                return True
+            else:
+                #Serial already exists!
+                print serial + ' is already present!'
+                return False
+        else:
+            print serial + ' is not a valid machine serial!'
+            return False
         
     
 
