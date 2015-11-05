@@ -29,9 +29,11 @@ class BotFarmManager(object):
         # Command updates don't necessarily need an existing bot
         # so we don't check that a serial exists
         if cleanInput == 'addbot':
-            return self.AddBot(serial)
+            ret = self.AddBot(serial)
+            return ret
         elif cleanInput == 'removebot':
-            return self.RemoveBot(serial)
+            ret self.RemoveBot(serial)
+            return ret
     
     elif serial in self.config.data['farm']:
         if checkStr == 'prb':
