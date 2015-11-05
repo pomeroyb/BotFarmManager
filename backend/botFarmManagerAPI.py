@@ -25,7 +25,7 @@ class BotFarmManager(object):
     cleanInput = input[3:]
     print cleanInput
     
-    if checkStr = 'cmd':
+    if checkStr == 'cmd':
         # Command updates don't necessarily need an existing bot
         # so we don't check that a serial exists
         if cleanInput = 'addbot':
