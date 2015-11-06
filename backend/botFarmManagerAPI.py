@@ -50,7 +50,7 @@ class BotFarmManager(object):
                 if cleanInput in self.config.data['farm'][serial]['events']:
                     # Event updates always add one to the event
                     self.config.data['farm'][serial]['events'][cleanInput] = self.config.data['farm'][serial]['events'][cleanInput] + 1
-                    print "Machine " + serial + " has had " + self.config.data['farm'][serial]['events'][cleanInput] + cleanInput + " events!"
+                    print "Machine " + serial + " has had " + str(self.config.data['farm'][serial]['events'][cleanInput]) + cleanInput + " events!"
                     return True
             elif checkStr == 'nme':
                 # This is a bot name update. We don't do any input checking yolo
