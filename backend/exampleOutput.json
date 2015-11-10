@@ -1,34 +1,23 @@
 {
-    "farm" : {
-        "exampleSerial" :{
-            "status" : "offline",
-            "problems" : {
-                "tornInsulation" : false,
-                "xEndstopFailure" : false,
-                "xStepperFailure" : false,
-                "extruderFanFailure" : false,
-                "hotEndFailure" : true
-            }
-        },
-        "04212AA34" :{
-            "status" : "online",
-            "problems" : {
-                "tornInsulation" : false,
-                "xEndstopFailure" : false,
-                "xStepperFailure" : false,
-                "extruderFanFailure" : false,
-                "hotEndFailure" : false
-            }
-        }
-        "023599B47" :{
-            "status" : "faulty",
-            "problems" : {
-                "tornInsulation" : true,
-                "xEndstopFailure" : false,
-                "xStepperFailure" : false,
-                "extruderFanFailure" : false,
-                "hotEndFailure" : false
-            }
-        }
-    }
+   "farm":{
+      "bot000001":{
+         "status":"online",
+         "problems":{
+            "extruderFanFailure":false,
+            "tornInsulation":false,
+            "wornYCarriage":false,
+            "xEndstopFailure":false,
+            "xStepperFailure":false,
+            "hotEndFailure":false
+         },
+         "type":"Replicator 2X",
+         "name":"Sharon",
+         "events":{
+            "ovalHoles":0,
+            "highResUnderExtrusion":0,
+            "underExtrusion":0,
+            "layerShift":0
+         }
+      }
+   }
 }
