@@ -195,7 +195,7 @@ class Config(object):
         with open(self.dataName, 'w') as outFileData:
             try:
                 outFileData.write('var data = {')
-                json.dump(self.data, outfileData)
+                json.dump(self.data, outFileData)
                 outFileData.write('}')
             except ValueError, e:
                 print 'could not save data.js'
