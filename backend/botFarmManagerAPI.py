@@ -192,7 +192,7 @@ class Config(object):
                 print 'Saved config'
             except ValueError, e:
                 print 'Could not save config'
-        with open(self.dataName, 'w') as outfileData:
+        with open(self.dataName, 'w') as outFileData:
             try:
                 outFileData.write('var data = {')
                 json.dump(self.data, outfileData)
