@@ -194,9 +194,9 @@ class Config(object):
                 print 'Could not save config'
         with open(self.dataName, 'w') as outFileData:
             try:
-                outFileData.write('var data = {')
+                outFileData.write('var data = ')
                 json.dump(self.data, outFileData)
-                outFileData.write('}')
+                ## outFileData.write('}')
             except ValueError, e:
                 print 'could not save data.js'
         
