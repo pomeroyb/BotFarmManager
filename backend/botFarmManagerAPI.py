@@ -151,6 +151,7 @@ class Config(object):
     
     def __init__(self):
         self.fname = 'config.json'
+        self.dataName = 'data.js'
         self.emptyConfig = {'farm': {}}
         self.data = None
         
@@ -181,7 +182,8 @@ class Config(object):
     def save(self):
         """Saves a BotFarmManager Config.  If no config.json exists, it will create one.
         This method completely overwrites the old config.json, so make sure to run config.load()
-        before this if you want your old data saved.
+        before this if you want your old data saved. Also saves a data.js file, which is what will
+        be sent the server
         
         """
         with open(self.fname, 'w') as outfile:
@@ -190,6 +192,13 @@ class Config(object):
                 print 'Saved config'
             except ValueError, e:
                 print 'Could not save config'
+        with open(self.dataName, 'w') as outfileData:
+            try:
+                outFileData.write('var data = {')
+                json.dump(self.data, outfileData)
+                outFileData.write('}')
+            except ValueError, e:
+                print 'could not save data.js'
         
 
 class BarcodeReader(object):
