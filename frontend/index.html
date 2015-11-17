@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>i3D Bot Farm Status</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+    <script src="../frontend/libs/jquery.js"></script>
+    <script src="../frontend/libs/pure.js"></script>
+    <script src="data.js"></script>
+
+</head>
+<body>
+<!-- HTML Template -->
+    <ul class="farm">
+        <div class="online">
+            <div class="botImage"></div>
+            <div class="botName"></div>
+        </div>
+        <div class="offline">
+            <div class="botImage"></div>
+            <div class="botName"></div>
+        </div>
+        <div class="faulty">
+            <div class="botImage"></div>
+            <div class="botName"></div>
+        </div>
+            
+    </ul>
+
+    
+  <script>
+    //Our data is defined in data.js
+    //this is shitty programming, but it's my first time doing
+    // webdev. oh well.
+    
+    //declaration of the actions PURE has to do
+    var onlineDirective = {
+      '.online':{
+        'bot<-farm':{
+          '.botImage':'',
+          '.botName':'bot.name',
+        },
+        filter:function(a){
+            //If the bot is online, return true
+            //else skip it, return false
+            var patt = new RegExp("online");
+            return patt.test(a.item.status);
+        }
+      }
+    };
+    var offlineDirective = {
+      '.offline':{
+        'bot<-farm':{
+            '.botImage':'',
+            '.botName':'bot.name',
+        },
+        filter:function(a){
+            //If the bot is online, return true
+            //else skip it, return false
+            var patt = new RegExp("offline");
+            return patt.test(a.item.status);
+        }
+      }
+    };
+    
+    var faultyDirective = {
+      '.faulty':{
+        'bot<-farm':{
+            '.botImage':'',
+            '.botName':'bot.name',
+        },
+        filter:function(a){
+            //If the bot is online, return true
+            //else skip it, return false
+            var patt = new RegExp("faulty");
+            return patt.test(a.item.status);
+        }
+      }
+    };
+
+    // note the use of render instead of autoRender
+    $('ul').render(data, onlineDirective);
+    $('ul').render(data, offlineDirective);
+    $('ul').render(data, faultyDirective);
+    </script>
+
+
+</body>
+
+</html>
