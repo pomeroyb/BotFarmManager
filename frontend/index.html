@@ -15,6 +15,8 @@
         <div class="online">
             <div class="botImage"></div>
             <div class="botName"></div>
+            <div class="botType"></div>
+            <div class="botProblems"></div>
         </div>
         <div class="offline">
             <div class="botImage"></div>
@@ -39,6 +41,22 @@
         'bot<-farm':{
           '.botImage':'',
           '.botName':'bot.name',
+          '.botType':'bot.type',
+          '.botProblems':{
+            'problem<-bot.problems':{
+                '.':function( b ){
+                    console.log(b.problem);
+                    if (b.item){
+                        return b.problem.pos;
+                    }
+                }
+            },
+            filter:function(a){
+                //If the bot has that problem, return true
+                //else skip it, return false
+                    return a.item;
+            } 
+          }
         },
         filter:function(a){
             //If the bot is online, return true
@@ -48,6 +66,8 @@
         }
       }
     };
+    
+    
     var offlineDirective = {
       '.offline':{
         'bot<-farm':{

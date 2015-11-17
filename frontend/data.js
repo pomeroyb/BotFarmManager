@@ -26,7 +26,7 @@ var data = {
             "extruderFanFailure":false,
             "tornInsulation":false,
             "wornYCarriage":false,
-            "xEndstopFailure":false,
+            "xEndstopFailure":true,
             "xStepperFailure":false,
             "hotEndFailure":false
          },
