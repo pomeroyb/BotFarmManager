@@ -25,6 +25,34 @@
     top: 0px;
 }
 
+.botEvents {
+    font-family: 'Open Sans', sans-serif;
+    background-color: transparent;
+    height: auto;
+    width: auto;
+    display: list-item;
+    vertical-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    overflow:overlay;
+    position: relative;
+    top: 0px;
+}
+
+.botSerial {
+    font-family: 'Open Sans', sans-serif;
+    background-color: transparent;
+    height: auto;
+    width: auto;
+    display: list-item;
+    vertical-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    overflow:overlay;
+    position: relative;
+    top: 0px;
+}
+
 .botType {
     font-family: 'Open Sans', sans-serif;
     background-color: transparent;
@@ -58,8 +86,8 @@
 
 .faulty {
   background-color: rgb(236,170,60);
-  width: 200px;
-  height: 200px;
+  width: 300px;
+  min-height: 200px;
   border-radius: 25px;
   text-align: center;
   vertical-align: middle;
@@ -71,8 +99,8 @@
 
 .offline {
   background-color: rgb(220,124,103);
-  width: 200px;
-  height: 200px;
+  width: 300px;
+  min-height: 200px;
   border-radius: 25px;
   text-align: center;
   vertical-align: middle;
@@ -83,7 +111,7 @@
 
 .online {
   background-color: rgb(74,190,129);
-  width: 200px;
+  width: 300px;
   min-height: 200px;
   border-radius: 25px;
   text-align: center;

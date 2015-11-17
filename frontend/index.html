@@ -15,17 +15,34 @@
         <div class="online">
             <div class="botImage"></div>
             <div class="botName"></div>
+            <div class="botSerial"></div>
             <div class="botType"></div>
+            <hr>
             <div class="botProblems"></div>
-        </div>
-        <div class="offline">
-            <div class="botImage"></div>
-            <div class="botName"></div>
+            <hr>
+            <div class="botEvents"></div>
         </div>
         <div class="faulty">
             <div class="botImage"></div>
             <div class="botName"></div>
+            <div class="botSerial"></div>
+            <div class="botType"></div>
+            <hr>
+            <div class="botProblems"></div>
+            <hr>
+            <div class="botEvents"></div>
         </div>
+        <div class="offline">
+            <div class="botImage"></div>
+            <div class="botName"></div>
+            <div class="botSerial"></div>
+            <div class="botType"></div>
+            <hr>
+            <div class="botProblems"></div>
+            <hr>
+            <div class="botEvents"></div>
+        </div>
+
             
     </ul>
 
@@ -41,14 +58,17 @@
         'bot<-farm':{
           '.botImage':'',
           '.botName':'bot.name',
-          '.botType':'bot.type',
+          '.botSerial':'Serial Number: #{bot.pos}',
+          '.botType':'Machine Type: #{bot.type}',
           '.botProblems':{
             'problem<-bot.problems':{
-                '.':function( b ){
-                    console.log(b.problem);
-                    if (b.item){
-                        return b.problem.pos;
-                    }
+                '.':function(d){
+                    //Convert Camel Case to formatted text
+                    var text = String(d.pos);
+                    var result = text.replace( /([A-Z])/g, " $1" );
+                    var finalResult = result.charAt(0).toUpperCase() + result.slice(1); // capitalize the first letter - as an example.
+                    //console.log(finalResult);
+                    return finalResult;
                 }
             },
             filter:function(a){
@@ -56,6 +76,27 @@
                 //else skip it, return false
                     return a.item;
             } 
+          },
+          '.botEvents':{
+            'event<-bot.events':{
+                '.':function(d){
+                    var count = d.item;
+                    //Convert Camel Case to formatted text
+                    var text = String(d.pos);
+                    var result = text.replace( /([A-Z])/g, " $1" );
+                    var finalResult = result.charAt(0).toUpperCase() + result.slice(1); // capitalize the first letter - as an example.
+                    //console.log(finalResult);
+                    return finalResult + ': ' + count;
+                }
+            },
+            filter:function( c ){
+                //console.log(c);
+                if (c.item == 0){
+                    return false;
+                } else {
+                    return true;
+                }
+            }
           }
         },
         filter:function(a){
@@ -67,12 +108,53 @@
       }
     };
     
-    
-    var offlineDirective = {
+  
+  
+   var offlineDirective = {
       '.offline':{
         'bot<-farm':{
-            '.botImage':'',
-            '.botName':'bot.name',
+          '.botImage':'',
+          '.botName':'bot.name',
+          '.botSerial':'Serial Number: #{bot.pos}',
+          '.botType':'Machine Type: #{bot.type}',
+          '.botProblems':{
+            'problem<-bot.problems':{
+                '.':function(d){
+                    //Convert Camel Case to formatted text
+                    var text = String(d.pos);
+                    var result = text.replace( /([A-Z])/g, " $1" );
+                    var finalResult = result.charAt(0).toUpperCase() + result.slice(1); // capitalize the first letter - as an example.
+                    //console.log(finalResult);
+                    return finalResult;
+                }
+            },
+            filter:function(a){
+                //If the bot has that problem, return true
+                //else skip it, return false
+                    return a.item;
+            } 
+          },
+          '.botEvents':{
+            'event<-bot.events':{
+                '.':function(d){
+                    var count = d.item;
+                    //Convert Camel Case to formatted text
+                    var text = String(d.pos);
+                    var result = text.replace( /([A-Z])/g, " $1" );
+                    var finalResult = result.charAt(0).toUpperCase() + result.slice(1); // capitalize the first letter - as an example.
+                    //console.log(finalResult);
+                    return finalResult + ': ' + count;
+                }
+            },
+            filter:function( c ){
+                //console.log(c);
+                if (c.item == 0){
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+          }
         },
         filter:function(a){
             //If the bot is online, return true
@@ -83,11 +165,51 @@
       }
     };
     
-    var faultyDirective = {
+     var faultyDirective = {
       '.faulty':{
         'bot<-farm':{
-            '.botImage':'',
-            '.botName':'bot.name',
+          '.botImage':'',
+          '.botName':'bot.name',
+          '.botSerial':'Serial Number: #{bot.pos}',
+          '.botType':'Machine Type: #{bot.type}',
+          '.botProblems':{
+            'problem<-bot.problems':{
+                '.':function(d){
+                    //Convert Camel Case to formatted text
+                    var text = String(d.pos);
+                    var result = text.replace( /([A-Z])/g, " $1" );
+                    var finalResult = result.charAt(0).toUpperCase() + result.slice(1); // capitalize the first letter - as an example.
+                    //console.log(finalResult);
+                    return finalResult;
+                }
+            },
+            filter:function(a){
+                //If the bot has that problem, return true
+                //else skip it, return false
+                    return a.item;
+            } 
+          },
+          '.botEvents':{
+            'event<-bot.events':{
+                '.':function(d){
+                    var count = d.item;
+                    //Convert Camel Case to formatted text
+                    var text = String(d.pos);
+                    var result = text.replace( /([A-Z])/g, " $1" );
+                    var finalResult = result.charAt(0).toUpperCase() + result.slice(1); // capitalize the first letter - as an example.
+                    //console.log(finalResult);
+                    return finalResult + ': ' + count;
+                }
+            },
+            filter:function( c ){
+                //console.log(c);
+                if (c.item == 0){
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+          }
         },
         filter:function(a){
             //If the bot is online, return true

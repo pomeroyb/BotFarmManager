@@ -21,12 +21,12 @@ var data = {
          }
       },
       "bot000002":{
-         "status":"online",
+         "status":"faulty",
          "problems":{
             "extruderFanFailure":false,
             "tornInsulation":false,
             "wornYCarriage":false,
-            "xEndstopFailure":true,
+            "xEndstopFailure":false,
             "xStepperFailure":false,
             "hotEndFailure":false
          },
@@ -52,10 +52,10 @@ var data = {
          "type":"Replicator 2X",
          "name":"Phillip",
          "events":{
-            "ovalHoles":0,
+            "ovalHoles":1,
             "highResUnderExtrusion":0,
             "underExtrusion":0,
-            "layerShift":0
+            "layerShift":2
          }
       }
    }
