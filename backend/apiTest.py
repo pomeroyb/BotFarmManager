@@ -7,7 +7,7 @@ import tinys3
 # ---------------------------------
 # Creating a simple connection
 conn = tinys3.Connection(s3Config.S3_ACCESS_KEY, s3Config.S3_SECRET_KEY)
-
+print s3Config.BUCKET_NAME
 # ---------------------------------
 # ---------------------------------
 
@@ -50,7 +50,7 @@ while not ended:
                 # Uploading our new data.js to AWS
                 f = open('data.js','rb')
                 conn.upload('data.js',f, s3Config.BUCKET_NAME)
-                
+                print "Uploaded data.js to S3"
                 oldOutput = None
 
         # Make sure you clear the reader immediately after grabbing data from it.
