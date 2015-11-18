@@ -22,5 +22,8 @@ All codes will be encoded using the [Code 128](https://en.wikipedia.org/wiki/Cod
 
 ## Languages
 - The backend code will be primarily Python 2.7 (Running on a Raspberry Pi)
-- The frontend code will be CSS and HTML, with maybe a sprinkle of JS if we want to get really fancy
+- The frontend code will be CSS, HTML, and JS.
+
+## Installing
+Raspberry Pi: Install Python 2.7 and Pip, then use pip to install [TinyS3](https://github.com/smore-inc/tinys3). Install backend code on the Pi, and upload frontend code to an S3 bucket.
 
