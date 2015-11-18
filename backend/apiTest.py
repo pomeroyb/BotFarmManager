@@ -1,13 +1,13 @@
 import botFarmManagerAPI
 import s3Config
-import tinys3
+import boto
 
 # ---------------------------------
 #           S3 INTEGRATION
 # ---------------------------------
 # Creating a simple connection
-conn = tinys3.Connection(s3Config.S3_ACCESS_KEY, s3Config.S3_SECRET_KEY)
-print s3Config.BUCKET_NAME
+s3 = boto.connect_s3()
+bucket = s3.get_bucket('www.i3dbotfarm.xyz')
 # ---------------------------------
 # ---------------------------------
 
@@ -48,8 +48,10 @@ while not ended:
                 #Save our new data
                 manager.config.save()
                 # Uploading our new data.js to AWS
-                f = open('data.js','rb')
-                conn.upload('data.js',f, s3Config.BUCKET_NAME)
+                key = boto.s3.key.Key(bucket, 'data.js')
+                with open('data.js') as f:
+                    key.send_file(f)
+                
                 print "Uploaded data.js to S3"
                 oldOutput = None
 
