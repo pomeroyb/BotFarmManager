@@ -1,5 +1,4 @@
 import botFarmManagerAPI
-import s3Config
 import boto
 
 # ---------------------------------
