@@ -48,6 +48,7 @@ while not ended:
                 #Save our new data
                 manager.config.save()
                 # Uploading our new data.js to AWS
+                f = open('data.js','rb')
                 conn.upload('data.js',f, s3Config.BUCKET_NAME)
                 
                 oldOutput = None
