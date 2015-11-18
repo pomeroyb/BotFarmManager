@@ -3,9 +3,9 @@
 ##
 ## This is just an example config -- fill in your specific Access key
 ## and secret key, then rename this file from "example_botoConfig.py"
-## to ".boto".
+## to "botoConfig.py".
 ##
-## Do not share your secret key with others! Add ".boto" to your
+## Do not share your secret key with others! Add "botoConfig.py" to your
 ## gitignore!
 
 

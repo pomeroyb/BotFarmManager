@@ -1,2 +1,3 @@
 s3Config.py
 .boto
+botoConfig.py
