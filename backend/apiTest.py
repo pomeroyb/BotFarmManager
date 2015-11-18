@@ -5,6 +5,7 @@ import boto
 #           S3 INTEGRATION
 # ---------------------------------
 # Creating a simple connection
+boto.set_stream_logger('boto')
 s3 = boto.connect_s3()
 bucket = s3.get_bucket('www.i3dbotfarm.xyz')
 # ---------------------------------
