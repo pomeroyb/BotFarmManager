@@ -2,7 +2,7 @@
 var data = {
    "farm":{
       "bot000001":{
-         "status":"offline",
+         "status":"online",
          "problems":{
             "extruderFanFailure":false,
             "tornInsulation":false,

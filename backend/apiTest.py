@@ -1,4 +1,15 @@
 import botFarmManagerAPI
+import s3Config
+import tinys3
+
+# ---------------------------------
+#           S3 INTEGRATION
+# ---------------------------------
+# Creating a simple connection
+conn = tinys3.Connection(s3Config.S3_ACCESS_KEY, s3Config.S3_SECRET_KEY)
+
+# ---------------------------------
+# ---------------------------------
 
 # Create a Bot Farm Manager object
 manager = botFarmManagerAPI.BotFarmManager()
@@ -33,15 +44,21 @@ while not ended:
             if oldOutput is not None:
                 # If our output is one of these commmands, update the bot
                 manager.UpdateBot(oldOutput, output)
+                
+                #Save our new data
+                manager.config.save()
+                # Uploading our new data.js to AWS
+                conn.upload('data.js',f, s3Config.BUCKET_NAME)
+                
                 oldOutput = None
-        
 
         # Make sure you clear the reader immediately after grabbing data from it.
         manager.reader.clear()
         count += 1
-    if (count > 5):
-        ended = True
+        
+
+
+
     
 
 
-manager.config.save()
