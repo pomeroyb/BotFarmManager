@@ -12,7 +12,7 @@ from simples3.bucket import S3Bucket
 #s3 = boto.s3.connect_to_region('us-west-2', aws_access_key_id=botoConfig.aws_access_key_id, aws_secret_access_key=botoConfig.aws_secret_access_key)
 #bucket = s3.get_bucket('www.i3dbotfarm.xyz')
 
-s = S3Bucket(name='www.i3dbotfarm.xyz', access_key=botoConfig.aws_access_key_id, secret_key=botoConfig.aws_secret_access_key, base_url='www.s3-website-us-west-2.amazonaws.com')
+s = S3Bucket(name='www.i3dbotfarm.xyz', access_key=botoConfig.aws_access_key_id, secret_key=botoConfig.aws_secret_access_key, base_url='https://s3-us-west-2.amazonaws.com/www.i3dbotfarm.xyz')
 
 print s
 # ---------------------------------
