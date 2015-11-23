@@ -49,7 +49,7 @@ while not ended:
                 manager.config.save()
                 # Uploading our new data.js to AWS
                 with open('data.js') as f:
-                    s.put(f, 'data.js')
+                    s.put(f.read(), 'data.js')
                 print "Uploaded data.js to S3"
                 oldOutput = None
 
