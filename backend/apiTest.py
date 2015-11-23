@@ -58,7 +58,7 @@ while not ended:
                 #key = boto.s3.key.Key(bucket, 'data.js')
                 #with open('data.js') as f:
                 #    key.send_file(f)
-                s.put('data.json', 'data.json')
+                s.put('data.js', 'data.js')
                 print "Uploaded data.js to S3"
                 oldOutput = None
 
