@@ -7,7 +7,8 @@ import boto
 # ---------------------------------
 # Creating a simple connection
 boto.set_stream_logger('boto')
-s3 = boto.connect_s3(botoConfig.aws_access_key_id, botoConfig.aws_secret_access_key)
+#s3 = boto.connect_s3(botoConfig.aws_access_key_id, botoConfig.aws_secret_access_key)
+s3 = boto.s3.connect_to_region('us-west-2', aws_access_key_id=botoConfig.aws_access_key_id, aws_secret_access_key=botoConfig.aws_secret_access_key)
 bucket = s3.get_bucket('www.i3dbotfarm.xyz')
 # ---------------------------------
 # ---------------------------------
