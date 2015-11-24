@@ -52,7 +52,7 @@ class BotFarmManager(object):
                 if cleanInput in self.config.data['farm'][serial]['events']:
                     # Event updates always add one to the event
                     self.config.data['farm'][serial]['events'][cleanInput] = self.config.data['farm'][serial]['events'][cleanInput] + 1
-                    print "Machine " + serial + " has had " + str(self.config.data['farm'][serial]['events'][cleanInput]) + cleanInput + " events!"
+                    print "Machine " + serial + " has had " + str(self.config.data['farm'][serial]['events'][cleanInput]) + ' ' + cleanInput + " events!"
                     self.UpdateBotStatus(serial)
                     return True
             elif checkStr == 'nme':
@@ -94,6 +94,7 @@ class BotFarmManager(object):
         ## First check anything that can make a bot Faulty
         ## We also check that the bot is already online, since it doesn't make
         ## sense to override an offline bot as faulty.
+        print 'Updating Bot Status'
         if self.config.data['farm'][serial]['status'] == 'online':
             if self.config.data['farm'][serial]['problems']['tornInsulation']:
                 self.config.data['farm'][serial]['status'] = 'faulty'
@@ -107,6 +108,7 @@ class BotFarmManager(object):
             if self.config.data['farm'][serial]['problems']['xStepperFailure']:
                 self.config.data['farm'][serial]['status'] = 'offline'            
             if self.config.data['farm'][serial]['problems']['hotEndFailure']:
+                print 'Hot End Failure! Setting bot to "offline"'
                 self.config.data['farm'][serial]['status'] = 'offline'
         
     def RemoveBot(self, serial):
