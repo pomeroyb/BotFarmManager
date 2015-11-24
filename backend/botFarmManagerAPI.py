@@ -20,7 +20,8 @@ class BotFarmManager(object):
             Returns: True if the bot was updated, false if not
         """
     
-        #find out what kind of update we were sent
+        # find out what kind of update we were sent
+        # Input should always have a 3 string identifier.
         checkStr = input[0:3]
         cleanInput = input[3:]
         print cleanInput
@@ -34,7 +35,7 @@ class BotFarmManager(object):
                 return ret
             elif cleanInput == 'removebot':
                 ret = self.RemoveBot(serial)
-                print "Removed machine " + serial + " to farm"
+                print "Removed machine " + serial + " from farm"
                 return ret
        
         elif serial in self.config.data['farm']:
@@ -44,6 +45,7 @@ class BotFarmManager(object):
                     # Problem updates always set problems to True.
                     self.config.data['farm'][serial]['problems'][cleanInput] = True
                     print "Machine " + serial + " now has " + cleanInput
+                    UpdateBotStatus(serial)
                     return True
             elif checkStr == 'evt':
                 # This is an event update
@@ -51,16 +53,19 @@ class BotFarmManager(object):
                     # Event updates always add one to the event
                     self.config.data['farm'][serial]['events'][cleanInput] = self.config.data['farm'][serial]['events'][cleanInput] + 1
                     print "Machine " + serial + " has had " + str(self.config.data['farm'][serial]['events'][cleanInput]) + cleanInput + " events!"
+                    UpdateBotStatus(serial)
                     return True
             elif checkStr == 'nme':
                 # This is a bot name update. We don't do any input checking yolo
                 self.config.data['farm'][serial]['name'] = cleanInput
                 print "Machine " + serial + " is now named " + cleanInput
+                UpdateBotStatus(serial)
                 return True
             elif checkStr == 'typ':
                 # This is a bot type update. We don't do any input checking here either yolox2
                 self.config.data['farm'][serial]['type'] = cleanInput
                 print "Machine " + serial + " is now a " + cleanInput
+                UpdateBotStatus(serial)
                 return True
             elif checkStr == 'clr':
                 # This is a clear update. We're either clearing status or events
@@ -68,6 +73,8 @@ class BotFarmManager(object):
                     # Set all bot problems to false
                     for key in self.config.data['farm'][serial]['problems']:
                         self.config.data['farm'][serial]['problems'][key] = False
+                    ## We know that a bot with no problems is online
+                    self.config.data['farm'][serial]['online'] = 'online'
                     print "Machine " + serial + " doesn't have any problems!"
                     return True
                 if cleanInput == 'botevents':
@@ -79,8 +86,29 @@ class BotFarmManager(object):
         else:
             print input + " was not recognized!"
             return False
-
-                    
+    
+    def UpdateBotStatus(self, serial):
+        """ Updates the bot status to either Online, Offline, or Faulty
+        
+        """
+        ## First check anything that can make a bot Faulty
+        ## We also check that the bot is already online, since it doesn't make
+        ## sense to override an offline bot as faulty.
+        if self.config.data['farm'][serial]['status'] == 'online':
+            if self.config.data['farm'][serial]['problems']['tornInsulation']:
+                self.config.data['farm'][serial]['status'] = 'faulty'
+            if self.config.data['farm'][serial]['problems']['wornYCarriage']:
+                self.config.data['farm'][serial]['status'] = 'faulty'
+            if self.config.data['farm'][serial]['problems']['xEndstopFailure']:
+                self.config.data['farm'][serial]['status'] = 'faulty'
+        else:
+            if self.config.data['farm'][serial]['problems']['extruderFanFailure']:
+                self.config.data['farm'][serial]['status'] = 'offline'
+            if self.config.data['farm'][serial]['problems']['xStepperFailure']:
+                self.config.data['farm'][serial]['status'] = 'offline'            
+            if self.config.data['farm'][serial]['problems']['hotEndFailure']:
+                self.config.data['farm'][serial]['status'] = 'offline'
+        
     def RemoveBot(self, serial):
         """Removes a serial from the config data if it exists.
         
