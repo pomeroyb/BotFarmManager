@@ -74,7 +74,7 @@ class BotFarmManager(object):
                     for key in self.config.data['farm'][serial]['problems']:
                         self.config.data['farm'][serial]['problems'][key] = False
                     ## We know that a bot with no problems is online
-                    self.config.data['farm'][serial]['online'] = 'online'
+                    self.config.data['farm'][serial]['status'] = 'online'
                     print "Machine " + serial + " doesn't have any problems!"
                     return True
                 if cleanInput == 'botevents':
