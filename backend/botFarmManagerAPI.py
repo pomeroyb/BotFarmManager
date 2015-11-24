@@ -99,15 +99,20 @@ class BotFarmManager(object):
         if self.config.data['farm'][serial]['status'] is 'online':
             if self.config.data['farm'][serial]['problems']['tornInsulation']:
                 self.config.data['farm'][serial]['status'] = 'faulty'
+                print 'Torn Insulation! Setting bot to "faulty"'
             if self.config.data['farm'][serial]['problems']['wornYCarriage']:
                 self.config.data['farm'][serial]['status'] = 'faulty'
+                print 'Worn Y Carriage Failure! Setting bot to "faulty"'
             if self.config.data['farm'][serial]['problems']['xEndstopFailure']:
                 self.config.data['farm'][serial]['status'] = 'faulty'
+                print 'X Endstop Failure! Setting bot to "faulty"'
         else:
             if self.config.data['farm'][serial]['problems']['extruderFanFailure']:
                 self.config.data['farm'][serial]['status'] = 'offline'
+                print 'Extruder Fan Failure! Setting bot to "offline"'
             if self.config.data['farm'][serial]['problems']['xStepperFailure']:
-                self.config.data['farm'][serial]['status'] = 'offline'            
+                self.config.data['farm'][serial]['status'] = 'offline'  
+                print 'X Stepper Failure! Setting bot to "offline"'                
             if self.config.data['farm'][serial]['problems']['hotEndFailure']:
                 print 'Hot End Failure! Setting bot to "offline"'
                 self.config.data['farm'][serial]['status'] = 'offline'
