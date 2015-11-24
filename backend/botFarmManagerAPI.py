@@ -95,7 +95,8 @@ class BotFarmManager(object):
         ## We also check that the bot is already online, since it doesn't make
         ## sense to override an offline bot as faulty.
         print 'Updating Bot Status'
-        if self.config.data['farm'][serial]['status'] == 'online':
+        print 'Current status: ' + self.config.data['farm'][serial]['status']
+        if self.config.data['farm'][serial]['status'] is 'online':
             if self.config.data['farm'][serial]['problems']['tornInsulation']:
                 self.config.data['farm'][serial]['status'] = 'faulty'
             if self.config.data['farm'][serial]['problems']['wornYCarriage']:
@@ -110,6 +111,7 @@ class BotFarmManager(object):
             if self.config.data['farm'][serial]['problems']['hotEndFailure']:
                 print 'Hot End Failure! Setting bot to "offline"'
                 self.config.data['farm'][serial]['status'] = 'offline'
+        print 'New status: ' + self.config.data['farm'][serial]['status']
         
     def RemoveBot(self, serial):
         """Removes a serial from the config data if it exists.
