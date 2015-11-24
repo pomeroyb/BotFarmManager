@@ -91,12 +91,23 @@ class BotFarmManager(object):
         """ Updates the bot status to either Online, Offline, or Faulty
         
         """
-        ## First check anything that can make a bot Faulty
-        ## We also check that the bot is already online, since it doesn't make
-        ## sense to override an offline bot as faulty.
+        
         print 'Updating Bot Status'
         print 'Current status: ' + self.config.data['farm'][serial]['status']
-        if self.config.data['farm'][serial]['status'] is 'online':
+
+        if self.config.data['farm'][serial]['problems']['extruderFanFailure']:
+            self.config.data['farm'][serial]['status'] = 'offline'
+            print 'Extruder Fan Failure! Setting bot to "offline"'
+        if self.config.data['farm'][serial]['problems']['xStepperFailure']:
+            self.config.data['farm'][serial]['status'] = 'offline'  
+            print 'X Stepper Failure! Setting bot to "offline"'                
+        if self.config.data['farm'][serial]['problems']['hotEndFailure']:
+            print 'Hot End Failure! Setting bot to "offline"'
+            self.config.data['farm'][serial]['status'] = 'offline'
+        if self.config.data['farm'][serial]['status'] is not 'offline':
+            ## First check anything that can make a bot Faulty
+            ## We also check that the bot is already online, since it doesn't make
+            ## sense to override an offline bot as faulty.
             if self.config.data['farm'][serial]['problems']['tornInsulation']:
                 self.config.data['farm'][serial]['status'] = 'faulty'
                 print 'Torn Insulation! Setting bot to "faulty"'
@@ -106,16 +117,6 @@ class BotFarmManager(object):
             if self.config.data['farm'][serial]['problems']['xEndstopFailure']:
                 self.config.data['farm'][serial]['status'] = 'faulty'
                 print 'X Endstop Failure! Setting bot to "faulty"'
-        else:
-            if self.config.data['farm'][serial]['problems']['extruderFanFailure']:
-                self.config.data['farm'][serial]['status'] = 'offline'
-                print 'Extruder Fan Failure! Setting bot to "offline"'
-            if self.config.data['farm'][serial]['problems']['xStepperFailure']:
-                self.config.data['farm'][serial]['status'] = 'offline'  
-                print 'X Stepper Failure! Setting bot to "offline"'                
-            if self.config.data['farm'][serial]['problems']['hotEndFailure']:
-                print 'Hot End Failure! Setting bot to "offline"'
-                self.config.data['farm'][serial]['status'] = 'offline'
         print 'New status: ' + self.config.data['farm'][serial]['status']
         
     def RemoveBot(self, serial):
