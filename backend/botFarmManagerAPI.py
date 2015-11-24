@@ -45,7 +45,7 @@ class BotFarmManager(object):
                     # Problem updates always set problems to True.
                     self.config.data['farm'][serial]['problems'][cleanInput] = True
                     print "Machine " + serial + " now has " + cleanInput
-                    UpdateBotStatus(serial)
+                    self.UpdateBotStatus(serial)
                     return True
             elif checkStr == 'evt':
                 # This is an event update
@@ -53,19 +53,19 @@ class BotFarmManager(object):
                     # Event updates always add one to the event
                     self.config.data['farm'][serial]['events'][cleanInput] = self.config.data['farm'][serial]['events'][cleanInput] + 1
                     print "Machine " + serial + " has had " + str(self.config.data['farm'][serial]['events'][cleanInput]) + cleanInput + " events!"
-                    UpdateBotStatus(serial)
+                    self.UpdateBotStatus(serial)
                     return True
             elif checkStr == 'nme':
                 # This is a bot name update. We don't do any input checking yolo
                 self.config.data['farm'][serial]['name'] = cleanInput
                 print "Machine " + serial + " is now named " + cleanInput
-                UpdateBotStatus(serial)
+                self.UpdateBotStatus(serial)
                 return True
             elif checkStr == 'typ':
                 # This is a bot type update. We don't do any input checking here either yolox2
                 self.config.data['farm'][serial]['type'] = cleanInput
                 print "Machine " + serial + " is now a " + cleanInput
-                UpdateBotStatus(serial)
+                self.UpdateBotStatus(serial)
                 return True
             elif checkStr == 'clr':
                 # This is a clear update. We're either clearing status or events
