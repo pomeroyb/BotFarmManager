@@ -1,14 +1,17 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600);	
 
 .botImage {
-    background-color: blue;
-    width: 100px;
-    height: 100px;
+    background-color: transparent;
+    width: 150px;
+    height: 95x;
     margin-left: auto;
     margin-right: auto;
     display: inline-block;
- 
-    
+}
+
+img {
+    max-width: 100%;
+    max-height: auto;
 }
 
 .botProblems {
